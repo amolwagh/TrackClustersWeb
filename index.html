@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- SEO -->
+  <title>TrackClusters — Real-Time GSC Keyword Cluster Tracking</title>
+  <meta name="description" content="TrackClusters reads your Google Search Console data in real time and shows your keywords moving as clusters — so you see the shift the moment it starts, not months later in a quarterly report." />
+
+  <!-- OpenGraph -->
+  <meta property="og:type"        content="website" />
+  <meta property="og:url"         content="https://trackclusters.com/" />
+  <meta property="og:title"       content="TrackClusters — Real-Time GSC Keyword Cluster Tracking" />
+  <meta property="og:description" content="TrackClusters reads your Google Search Console data in real time and shows your keywords moving as clusters — so you see the shift the moment it starts, not months later in a quarterly report." />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+  <!-- Inter: weights 300 + 400 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400&display=swap" rel="stylesheet" />
+
+  <!-- GA4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FZQEJVPP53"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-FZQEJVPP53');
+  </script>
+
+  <link rel="stylesheet" href="/src/style.css" />
+</head>
+<body>
+
+  <!-- ── NAV ─────────────────────────────────────────────────────────────────── -->
+  <nav id="main-nav" class="fixed top-0 left-0 right-0 z-50">
+    <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+
+      <!-- Wordmark -->
+      <a href="/" class="text-primary font-light text-[17px] tracking-[-0.2px] select-none">TrackClusters</a>
+
+      <!-- Desktop center links -->
+      <div class="hidden md:flex items-center gap-8">
+        <a href="#pricing" class="text-ink-mute hover:text-ink text-[15px] font-normal transition-colors duration-150">Pricing</a>
+        <a href="#faq"     class="text-ink-mute hover:text-ink text-[15px] font-normal transition-colors duration-150">FAQ</a>
+      </div>
+
+      <!-- Desktop right actions -->
+      <div class="hidden md:flex items-center gap-5">
+        <a href="https://app.trackclusters.com/login"
+           class="text-ink-mute hover:text-ink text-[15px] font-normal transition-colors duration-150">
+          Log in
+        </a>
+        <a href="https://app.trackclusters.com/register"
+           class="bg-primary hover:bg-primary-deep text-white text-[15px] font-normal px-5 py-2 rounded-full transition-colors duration-150">
+          Start Free Trial
+        </a>
+      </div>
+
+      <!-- Mobile hamburger -->
+      <button id="menu-toggle" class="md:hidden p-2 -mr-1 text-ink" aria-label="Open menu">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M3 5H17M3 10H17M3 15H17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile menu panel -->
+    <div id="mobile-menu" class="hidden bg-white border-t border-hairline px-6 pt-5 pb-6 shadow-sm">
+      <div class="flex flex-col gap-5">
+        <a href="#pricing" class="text-ink text-[16px] font-normal">Pricing</a>
+        <a href="#faq"     class="text-ink text-[16px] font-normal">FAQ</a>
+        <hr class="border-hairline" />
+        <a href="https://app.trackclusters.com/login"    class="text-ink-mute text-[16px] font-normal">Log in</a>
+        <a href="https://app.trackclusters.com/register" class="bg-primary text-white text-[15px] font-normal px-5 py-3 rounded-full text-center">
+          Start Free Trial
+        </a>
+      </div>
+    </div>
+  </nav>
+  <!-- ── /NAV ─────────────────────────────────────────────────────────────────── -->
+
+
+  <!-- ── HERO ─────────────────────────────────────────────────────────────────── -->
+  <section class="relative overflow-hidden bg-canvas min-h-screen flex items-center">
+
+    <!-- Gradient mesh backdrop (SVG with Gaussian-blur blobs) -->
+    <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+      <svg class="w-full h-full" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice"
+           fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <filter id="mesh-blur" x="-60%" y="-60%" width="220%" height="220%">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="72"/>
+          </filter>
+        </defs>
+        <!-- cream top-left -->
+        <ellipse cx="240"  cy="260" rx="600" ry="420" fill="#f5e9d4" opacity="0.70" filter="url(#mesh-blur)"/>
+        <!-- subdued indigo top-right -->
+        <ellipse cx="1210" cy="190" rx="540" ry="380" fill="#b9b9f9" opacity="0.52" filter="url(#mesh-blur)"/>
+        <!-- soft lavender center-top -->
+        <ellipse cx="730"  cy="-60" rx="460" ry="310" fill="#ddd8fd" opacity="0.42" filter="url(#mesh-blur)"/>
+        <!-- cream accent bottom-right -->
+        <ellipse cx="1390" cy="680" rx="420" ry="310" fill="#f5e9d4" opacity="0.30" filter="url(#mesh-blur)"/>
+        <!-- very faint indigo bottom-left -->
+        <ellipse cx="80"   cy="620" rx="360" ry="280" fill="#b9b9f9" opacity="0.18" filter="url(#mesh-blur)"/>
+      </svg>
+    </div>
+
+    <!-- Hero content -->
+    <div class="relative z-10 max-w-4xl mx-auto px-6 pt-32 pb-24 text-center">
+      <h1 class="text-ink font-light leading-[1.03] text-[36px] sm:text-[46px] md:text-[56px]"
+          style="letter-spacing:-1.4px">
+        Stop waiting weeks to find out<br class="hidden sm:block" /> if your SEO is working.
+      </h1>
+
+      <p class="mt-6 text-ink-secondary font-light text-[16px] md:text-[17px] leading-[1.65] max-w-2xl mx-auto">
+        TrackClusters reads your Google Search Console data in real time and shows your keywords
+        moving as clusters — so you see the shift the moment it starts, not months later in a
+        quarterly report.
+      </p>
+
+      <div class="mt-10 flex flex-col sm:flex-row gap-4 justify-center items-center">
+        <a href="https://app.trackclusters.com/register"
+           class="bg-primary hover:bg-primary-deep text-white text-[16px] font-normal px-8 py-3 rounded-full transition-colors duration-150 w-full sm:w-auto text-center">
+          Start 7-Day Free Trial
+        </a>
+        <a href="#pricing"
+           class="bg-white/80 hover:bg-white text-primary border border-primary text-[16px] font-normal px-8 py-3 rounded-full transition-colors duration-150 w-full sm:w-auto text-center">
+          See pricing
+        </a>
+      </div>
+    </div>
+  </section>
+  <!-- ── /HERO ─────────────────────────────────────────────────────────────────── -->
+
+
+  <!-- ── WHY GSC-NATIVE ────────────────────────────────────────────────────────── -->
+  <section class="bg-canvas-soft py-20 md:py-28">
+    <div class="max-w-3xl mx-auto px-6 text-center">
+      <h2 class="text-ink font-light leading-[1.1] text-[26px] md:text-[32px] mb-6"
+          style="letter-spacing:-0.64px">
+        GSC-native. Real data, nothing estimated.
+      </h2>
+      <p class="text-ink-secondary font-light text-[16px] leading-[1.75]">
+        Most rank trackers guess your rankings by scraping search results, and most keyword tools
+        guess your traffic by estimating search volume. TrackClusters does neither. We read directly
+        from your own Google Search Console — the same impressions, clicks, and positions Google
+        itself shows you, not a third-party model of what might be happening. Real data from your
+        real site, organized into clusters so you can watch it move. No scraping, no estimates,
+        no guessing.
+      </p>
+    </div>
+  </section>
+  <!-- ── /WHY GSC-NATIVE ───────────────────────────────────────────────────────── -->
+
+
+  <!-- ── BENEFIT CARDS ─────────────────────────────────────────────────────────── -->
+  <section class="bg-canvas py-20 md:py-28">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+        <div class="bg-white border border-hairline rounded-xl p-8">
+          <h3 class="text-ink font-light text-[20px] leading-[1.2] mb-4" style="letter-spacing:-0.2px">
+            Catch it before it costs you
+          </h3>
+          <p class="text-ink-mute font-light text-[15px] leading-[1.65]">
+            See a cluster losing ground weeks before the traffic drop shows up. Fix the page,
+            refresh the content, adjust the strategy — while you still have time to matter.
+          </p>
+        </div>
+
+        <div class="bg-white border border-hairline rounded-xl p-8">
+          <h3 class="text-ink font-light text-[20px] leading-[1.2] mb-4" style="letter-spacing:-0.2px">
+            Walk into the meeting already right
+          </h3>
+          <p class="text-ink-mute font-light text-[15px] leading-[1.65]">
+            No more midnight spreadsheet diving before a client call. Open TrackClusters, see what
+            moved and why, and sound like the person who already knew — because you did.
+          </p>
+        </div>
+
+        <div class="bg-white border border-hairline rounded-xl p-8">
+          <h3 class="text-ink font-light text-[20px] leading-[1.2] mb-4" style="letter-spacing:-0.2px">
+            Watch your strategy come alive
+          </h3>
+          <p class="text-ink-mute font-light text-[15px] leading-[1.65]">
+            Individual keyword rankings are noise. Clusters are signal. Watch your topic pillars rise
+            and fall together, and finally see the shape of what you've built — not just isolated
+            numbers in a table.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+  <!-- ── /BENEFIT CARDS ────────────────────────────────────────────────────────── -->
+
+
+  <!-- ── HOW IT WORKS ──────────────────────────────────────────────────────────── -->
+  <section class="bg-canvas-soft py-20 md:py-28">
+    <div class="max-w-6xl mx-auto px-6">
+      <h2 class="text-ink font-light leading-[1.1] text-[26px] md:text-[32px] mb-12 text-center"
+          style="letter-spacing:-0.64px">
+        How it works
+      </h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+        <div class="bg-white border border-hairline rounded-xl p-8">
+          <div class="text-primary text-[12px] font-normal tracking-[0.1em] uppercase mb-4">Step 1</div>
+          <h3 class="text-ink font-light text-[18px] leading-[1.3] mb-3" style="letter-spacing:-0.18px">
+            Connect Google Search Console
+          </h3>
+          <p class="text-ink-mute font-light text-[15px] leading-[1.6]">
+            30 seconds, no scraping, no guessing.
+          </p>
+        </div>
+
+        <div class="bg-white border border-hairline rounded-xl p-8">
+          <div class="text-primary text-[12px] font-normal tracking-[0.1em] uppercase mb-4">Step 2</div>
+          <h3 class="text-ink font-light text-[18px] leading-[1.3] mb-3" style="letter-spacing:-0.18px">
+            TrackClusters groups your real queries into living clusters
+          </h3>
+          <p class="text-ink-mute font-light text-[15px] leading-[1.6]">
+            Your actual GSC data, organized the way you think about your site.
+          </p>
+        </div>
+
+        <div class="bg-white border border-hairline rounded-xl p-8">
+          <div class="text-primary text-[12px] font-normal tracking-[0.1em] uppercase mb-4">Step 3</div>
+          <h3 class="text-ink font-light text-[18px] leading-[1.3] mb-3" style="letter-spacing:-0.18px">
+            Watch them move
+          </h3>
+          <p class="text-ink-mute font-light text-[15px] leading-[1.6]">
+            Get ahead of the shifts, prove the work that's working.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+  <!-- ── /HOW IT WORKS ─────────────────────────────────────────────────────────── -->
+
+
+  <!-- ── PRICING ───────────────────────────────────────────────────────────────── -->
+  <section id="pricing" class="bg-canvas py-20 md:py-28">
+    <div class="max-w-6xl mx-auto px-6">
+
+      <h2 class="text-ink font-light leading-[1.1] text-[26px] md:text-[40px] mb-3 text-center"
+          style="letter-spacing:-0.8px">
+        Simple, transparent pricing
+      </h2>
+      <p class="text-ink-mute font-light text-[16px] text-center mb-10">
+        Start free. Upgrade when you're ready.
+      </p>
+
+      <!-- Billing toggle -->
+      <div class="flex items-center justify-center gap-3 mb-12">
+        <span id="label-monthly" class="text-ink text-[15px] font-normal cursor-pointer select-none">Monthly</span>
+
+        <button id="pricing-toggle"
+                class="relative w-11 h-6 bg-primary rounded-full flex-shrink-0 transition-colors duration-150"
+                aria-label="Toggle billing period (monthly / annual)">
+          <span id="toggle-thumb"
+                class="absolute top-1 left-1 size-4 bg-white rounded-full shadow-sm transition-transform duration-200"></span>
+        </button>
+
+        <span id="label-annual" class="text-ink-mute text-[15px] font-normal cursor-pointer select-none">Annual</span>
+      </div>
+
+      <!-- Plan cards -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <!-- Starter -->
+        <div class="bg-white border border-hairline rounded-xl p-8 flex flex-col">
+          <div class="mb-7">
+            <h3 class="text-ink font-normal text-[17px] mb-5">Starter</h3>
+            <div class="flex items-baseline gap-1">
+              <span class="text-ink font-light text-[15px]">$</span>
+              <span id="price-starter" class="price-num text-ink font-light text-[52px] leading-none">19</span>
+              <span id="period-starter" class="text-ink-mute font-light text-[15px] ml-0.5">/mo</span>
+            </div>
+          </div>
+          <ul class="flex flex-col gap-3 mb-8 flex-1 text-[15px] font-light text-ink-secondary">
+            <li class="flex items-center gap-2.5">
+              <svg class="size-4 text-primary shrink-0" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M3 8l3.5 3.5L13 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              1 site
+            </li>
+            <li class="flex items-center gap-2.5">
+              <svg class="size-4 text-primary shrink-0" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M3 8l3.5 3.5L13 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              1 seat
+            </li>
+            <li class="flex items-center gap-2.5">
+              <svg class="size-4 text-primary shrink-0" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M3 8l3.5 3.5L13 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              Full cluster tracking
+            </li>
+          </ul>
+          <a href="https://app.trackclusters.com/register"
+             class="bg-primary hover:bg-primary-deep text-white text-[15px] font-normal py-2.5 rounded-full text-center transition-colors duration-150">
+            Start Free Trial
+          </a>
+        </div>
+
+        <!-- Growth (featured dark card) -->
+        <div class="bg-brand-dark rounded-xl p-8 flex flex-col">
+          <div class="mb-7">
+            <div class="flex items-center gap-2 mb-5">
+              <h3 class="text-white font-normal text-[17px]">Growth</h3>
+              <span class="text-[11px] font-normal bg-primary-subdued text-brand-dark px-2 py-0.5 rounded-full leading-none">
+                Most popular
+              </span>
+            </div>
+            <div class="flex items-baseline gap-1">
+              <span class="text-white/60 font-light text-[15px]">$</span>
+              <span id="price-growth" class="price-num text-white font-light text-[52px] leading-none">49</span>
+              <span id="period-growth" class="text-white/60 font-light text-[15px] ml-0.5">/mo</span>
+            </div>
+          </div>
+          <ul class="flex flex-col gap-3 mb-8 flex-1 text-[15px] font-light text-white/75">
+            <li class="flex items-center gap-2.5">
+              <svg class="size-4 text-primary-subdued shrink-0" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M3 8l3.5 3.5L13 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              3 sites
+            </li>
+            <li class="flex items-center gap-2.5">
+              <svg class="size-4 text-primary-subdued shrink-0" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M3 8l3.5 3.5L13 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              2 seats
+            </li>
+            <li class="flex items-center gap-2.5">
+              <svg class="size-4 text-primary-subdued shrink-0" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M3 8l3.5 3.5L13 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              Full cluster tracking
+            </li>
+          </ul>
+          <a href="https://app.trackclusters.com/register"
+             class="bg-white hover:bg-canvas-soft text-brand-dark text-[15px] font-normal py-2.5 rounded-full text-center transition-colors duration-150">
+            Start Free Trial
+          </a>
+        </div>
+
+        <!-- Scale -->
+        <div class="bg-white border border-hairline rounded-xl p-8 flex flex-col md:col-span-2 lg:col-span-1">
+          <div class="mb-7">
+            <h3 class="text-ink font-normal text-[17px] mb-5">Scale</h3>
+            <div class="flex items-baseline gap-1">
+              <span class="text-ink font-light text-[15px]">$</span>
+              <span id="price-scale" class="price-num text-ink font-light text-[52px] leading-none">129</span>
+              <span id="period-scale" class="text-ink-mute font-light text-[15px] ml-0.5">/mo</span>
+            </div>
+          </div>
+          <ul class="flex flex-col gap-3 mb-8 flex-1 text-[15px] font-light text-ink-secondary">
+            <li class="flex items-center gap-2.5">
+              <svg class="size-4 text-primary shrink-0" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M3 8l3.5 3.5L13 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              10 sites
+            </li>
+            <li class="flex items-center gap-2.5">
+              <svg class="size-4 text-primary shrink-0" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M3 8l3.5 3.5L13 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              5 seats
+            </li>
+            <li class="flex items-center gap-2.5">
+              <svg class="size-4 text-primary shrink-0" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M3 8l3.5 3.5L13 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              Full cluster tracking
+            </li>
+          </ul>
+          <a href="https://app.trackclusters.com/register"
+             class="bg-primary hover:bg-primary-deep text-white text-[15px] font-normal py-2.5 rounded-full text-center transition-colors duration-150">
+            Start Free Trial
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+  <!-- ── /PRICING ──────────────────────────────────────────────────────────────── -->
+
+
+  <!-- ── CLOSING CTA ───────────────────────────────────────────────────────────── -->
+  <section class="bg-brand-dark py-24 md:py-32">
+    <div class="max-w-3xl mx-auto px-6 text-center">
+      <h2 class="text-white font-light leading-[1.1] text-[26px] md:text-[40px] mb-4"
+          style="letter-spacing:-0.8px">
+        Your next ranking shift is already happening.
+      </h2>
+      <p class="text-white/65 font-light text-[17px] leading-[1.6] mb-10">
+        The only question is whether you'll see it first.
+      </p>
+      <a href="https://app.trackclusters.com/register"
+         class="inline-block bg-white hover:bg-canvas-soft text-brand-dark text-[16px] font-normal px-8 py-3.5 rounded-full transition-colors duration-150">
+        Start Free Trial
+      </a>
+    </div>
+  </section>
+  <!-- ── /CLOSING CTA ──────────────────────────────────────────────────────────── -->
+
+
+  <!-- ── FAQ ───────────────────────────────────────────────────────────────────── -->
+  <section id="faq" class="bg-canvas py-20 md:py-28">
+    <div class="max-w-2xl mx-auto px-6">
+      <h2 class="text-ink font-light leading-[1.1] text-[26px] md:text-[32px] mb-12 text-center"
+          style="letter-spacing:-0.64px">
+        Common questions
+      </h2>
+
+      <div class="divide-y divide-hairline">
+
+        <div class="faq-item">
+          <button class="faq-question w-full flex items-center justify-between gap-6 py-5 text-left">
+            <span class="text-ink font-light text-[16px] leading-[1.4]">Do I need to install anything?</span>
+            <span class="faq-icon text-ink-mute text-[20px] font-light shrink-0 w-5 text-center leading-none select-none">+</span>
+          </button>
+          <div class="faq-answer hidden pb-5">
+            <p class="text-ink-mute font-light text-[15px] leading-[1.65]">
+              No — just connect your GSC property.
+            </p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question w-full flex items-center justify-between gap-6 py-5 text-left">
+            <span class="text-ink font-light text-[16px] leading-[1.4]">Can I track multiple sites?</span>
+            <span class="faq-icon text-ink-mute text-[20px] font-light shrink-0 w-5 text-center leading-none select-none">+</span>
+          </button>
+          <div class="faq-answer hidden pb-5">
+            <p class="text-ink-mute font-light text-[15px] leading-[1.65]">
+              Yes, depending on your plan.
+            </p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question w-full flex items-center justify-between gap-6 py-5 text-left">
+            <span class="text-ink font-light text-[16px] leading-[1.4]">Does this replace Google Search Console?</span>
+            <span class="faq-icon text-ink-mute text-[20px] font-light shrink-0 w-5 text-center leading-none select-none">+</span>
+          </button>
+          <div class="faq-answer hidden pb-5">
+            <p class="text-ink-mute font-light text-[15px] leading-[1.65]">
+              No — it organizes and extends the data GSC already gives you.
+            </p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question w-full flex items-center justify-between gap-6 py-5 text-left">
+            <span class="text-ink font-light text-[16px] leading-[1.4]">Do I get keyword volume? Is this a keyword research tool?</span>
+            <span class="faq-icon text-ink-mute text-[20px] font-light shrink-0 w-5 text-center leading-none select-none">+</span>
+          </button>
+          <div class="faq-answer hidden pb-5">
+            <p class="text-ink-mute font-light text-[15px] leading-[1.65]">
+              No — TrackClusters isn't a keyword research tool, and we don't show estimated search
+              volume. What you get instead is real impression data, straight from your own Google
+              Search Console — the actual number of times your pages showed up in search for that
+              query, not a third-party estimate of how often people search for it. Volume tools guess
+              at the market. We show you what's actually happening with your own site. TrackClusters
+              organizes the keywords you're already ranking for into clusters, so you can watch real
+              impressions and positions move together over time — not speculate about demand you
+              haven't captured yet.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+  <!-- ── /FAQ ──────────────────────────────────────────────────────────────────── -->
+
+
+  <!-- ── FOOTER ─────────────────────────────────────────────────────────────────── -->
+  <footer class="bg-canvas-soft border-t border-hairline py-10">
+    <div class="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <span class="text-ink font-light text-[15px]">TrackClusters</span>
+      <nav class="flex items-center gap-6 flex-wrap justify-center" aria-label="Footer navigation">
+        <a href="https://blog.trackclusters.com" target="_blank" rel="noopener noreferrer"
+           class="text-ink-mute hover:text-ink text-[14px] font-light transition-colors duration-150">Blog</a>
+        <a href="/privacy"
+           class="text-ink-mute hover:text-ink text-[14px] font-light transition-colors duration-150">Privacy Policy</a>
+        <a href="/terms"
+           class="text-ink-mute hover:text-ink text-[14px] font-light transition-colors duration-150">Terms</a>
+        <a href="mailto:hello@trackclusters.com"
+           class="text-ink-mute hover:text-ink text-[14px] font-light transition-colors duration-150">Contact</a>
+      </nav>
+    </div>
+  </footer>
+  <!-- ── /FOOTER ────────────────────────────────────────────────────────────────── -->
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
