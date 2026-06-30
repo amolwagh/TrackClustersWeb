@@ -85,7 +85,7 @@
 
 
   <!-- ── HERO ─────────────────────────────────────────────────────────────────── -->
-  <section class="relative overflow-hidden bg-canvas min-h-screen flex items-center">
+  <section class="relative overflow-hidden bg-canvas">
 
     <!-- Gradient mesh backdrop (SVG with Gaussian-blur blobs) -->
     <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
@@ -110,7 +110,7 @@
     </div>
 
     <!-- Hero content -->
-    <div class="relative z-10 max-w-4xl mx-auto px-6 pt-32 pb-24 text-center">
+    <div class="relative z-10 max-w-4xl mx-auto px-6 pt-32 pb-12 text-center">
       <h1 class="text-ink font-light leading-[1.03] text-[36px] sm:text-[46px] md:text-[56px]"
           style="letter-spacing:-1.4px">
         Stop waiting weeks to find out<br class="hidden sm:block" /> if your SEO is working.
@@ -133,6 +133,79 @@
         </a>
       </div>
     </div>
+
+  <!-- PLACEHOLDER: swap with real product screenshot/mockup when available -->
+  <div class="relative z-10 w-full max-w-5xl mx-auto px-6 pb-24">
+    <div class="bg-white rounded-[16px] shadow-lg border border-hairline p-5 sm:p-6 overflow-hidden">
+
+      <!-- Header row -->
+      <div class="flex items-center justify-between mb-5">
+        <span class="text-ink text-[11px] font-normal tracking-[0.07em] uppercase">Cluster Overview</span>
+        <span class="bg-canvas-soft border border-hairline text-ink-mute text-[11px] font-light px-3 py-1 rounded-full">Last 30 days</span>
+      </div>
+
+      <!-- 3-col stat row -->
+      <div class="grid grid-cols-3 gap-3 mb-5 pb-5 border-b border-hairline">
+        <div>
+          <div class="text-ink text-[18px] sm:text-[22px] font-light leading-none mb-1" style="font-feature-settings:'tnum';letter-spacing:-0.3px">482K</div>
+          <div class="text-ink-mute text-[11px] font-light">Impressions</div>
+        </div>
+        <div class="border-x border-hairline px-3 sm:px-4">
+          <div class="text-ink text-[18px] sm:text-[22px] font-light leading-none mb-1" style="font-feature-settings:'tnum';letter-spacing:-0.3px">4.2</div>
+          <div class="text-ink-mute text-[11px] font-light">Avg. Position</div>
+        </div>
+        <div class="pl-3 sm:pl-4">
+          <div class="text-ink text-[18px] sm:text-[22px] font-light leading-none mb-1" style="font-feature-settings:'tnum';letter-spacing:-0.3px">12.8K</div>
+          <div class="text-ink-mute text-[11px] font-light">Clicks</div>
+        </div>
+      </div>
+
+      <!-- Mini area chart -->
+      <div class="bg-canvas-soft rounded-lg px-2 pt-3 pb-2 mb-5">
+        <svg viewBox="0 0 800 90" class="w-full" style="height:68px" preserveAspectRatio="none" aria-hidden="true">
+          <defs>
+            <linearGradient id="heroChartGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#533afd" stop-opacity="0.18"/>
+              <stop offset="100%" stop-color="#533afd" stop-opacity="0.01"/>
+            </linearGradient>
+          </defs>
+          <path d="M0,78 C30,76 55,73 100,68 S155,66 200,71 S255,59 300,53 S360,48 410,51 S458,41 510,34 S560,27 610,30 S658,21 720,14 L800,9 L800,90 L0,90 Z"
+                fill="url(#heroChartGrad)"/>
+          <path d="M0,78 C30,76 55,73 100,68 S155,66 200,71 S255,59 300,53 S360,48 410,51 S458,41 510,34 S560,27 610,30 S658,21 720,14 L800,9"
+                fill="none" stroke="#533afd" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <!-- Cluster shift markers -->
+          <circle cx="300" cy="53" r="4" fill="#ea2261"/>
+          <circle cx="510" cy="34" r="4" fill="#ea2261"/>
+          <circle cx="720" cy="14" r="4.5" fill="#533afd" stroke="#ffffff" stroke-width="2"/>
+        </svg>
+      </div>
+
+      <!-- Cluster table -->
+      <div class="text-[12px]">
+        <div class="grid pb-2 border-b border-hairline text-[11px] text-ink-mute font-normal" style="grid-template-columns:1fr 70px 54px;gap:0 12px">
+          <span>Cluster</span>
+          <span class="text-right" style="font-feature-settings:'tnum'">Position</span>
+          <span class="text-right">Trend</span>
+        </div>
+        <div class="grid py-2 border-b border-hairline" style="grid-template-columns:1fr 70px 54px;gap:0 12px">
+          <span class="text-ink-secondary font-light">Pricing pages</span>
+          <span class="text-ink font-light text-right" style="font-feature-settings:'tnum'">3.4</span>
+          <span class="text-right font-normal" style="color:#16a34a">↑ 1.2</span>
+        </div>
+        <div class="grid py-2 border-b border-hairline" style="grid-template-columns:1fr 70px 54px;gap:0 12px">
+          <span class="text-ink-secondary font-light">Blog: SEO guides</span>
+          <span class="text-ink font-light text-right" style="font-feature-settings:'tnum'">5.1</span>
+          <span class="text-right font-normal" style="color:#16a34a">↑ 0.8</span>
+        </div>
+        <div class="grid py-2" style="grid-template-columns:1fr 70px 54px;gap:0 12px">
+          <span class="text-ink-secondary font-light">Product comparisons</span>
+          <span class="text-ink font-light text-right" style="font-feature-settings:'tnum'">7.8</span>
+          <span class="text-right font-normal" style="color:#ea2261">↓ 0.4</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
   </section>
   <!-- ── /HERO ─────────────────────────────────────────────────────────────────── -->
 
@@ -217,6 +290,24 @@
           <p class="text-ink-mute font-light text-[15px] leading-[1.6]">
             30 seconds, no scraping, no guessing.
           </p>
+
+          <!-- Step 1 mock: GSC connected state -->
+          <div class="mt-5 rounded-lg border border-hairline bg-canvas-soft p-3">
+            <div class="flex items-center gap-2.5">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true" class="shrink-0">
+                <path d="M8 0H16V8H8Z" fill="#4285F4"/>
+                <path d="M16 8H8V16H16Z" fill="#34A853"/>
+                <path d="M8 16H0V8H8Z" fill="#FBBC05"/>
+                <path d="M0 8H8V0H0Z" fill="#EA4335"/>
+              </svg>
+              <span class="text-ink-secondary text-[12px] font-light flex-1 min-w-0 truncate">Google Search Console</span>
+              <span class="bg-primary text-white text-[10px] font-normal px-2 py-0.5 rounded-full shrink-0">✓ Connected</span>
+            </div>
+            <div class="mt-2 pt-2 border-t border-hairline flex items-center gap-1.5">
+              <span class="size-1.5 rounded-full bg-primary shrink-0"></span>
+              <span class="text-ink-mute text-[11px] font-light">1 property synced</span>
+            </div>
+          </div>
         </div>
 
         <div class="bg-white border border-hairline rounded-xl p-8">
@@ -227,6 +318,31 @@
           <p class="text-ink-mute font-light text-[15px] leading-[1.6]">
             Your actual GSC data, organized the way you think about your site.
           </p>
+
+          <!-- Step 2 mock: keyword cluster grouping diagram -->
+          <div class="mt-5 rounded-lg border border-hairline bg-canvas-soft p-3 flex items-center justify-center">
+            <svg viewBox="0 0 220 78" class="w-full max-w-[220px]" height="78" aria-hidden="true">
+              <!-- Cluster A: 3 nodes (primary) -->
+              <circle cx="36" cy="22" r="5" fill="#533afd" opacity="0.9"/>
+              <circle cx="54" cy="42" r="5" fill="#533afd" opacity="0.7"/>
+              <circle cx="25" cy="48" r="5" fill="#533afd" opacity="0.8"/>
+              <line x1="36" y1="22" x2="54" y2="42" stroke="#533afd" stroke-width="1" opacity="0.22"/>
+              <line x1="54" y1="42" x2="25" y2="48" stroke="#533afd" stroke-width="1" opacity="0.22"/>
+              <line x1="36" y1="22" x2="25" y2="48" stroke="#533afd" stroke-width="1" opacity="0.22"/>
+              <text x="40" y="70" text-anchor="middle" font-size="7" fill="#64748d" font-family="Inter,sans-serif">Cluster A</text>
+              <!-- Cluster B: 2 nodes (primary-soft) -->
+              <circle cx="122" cy="27" r="5" fill="#665efd" opacity="0.9"/>
+              <circle cx="144" cy="46" r="5" fill="#665efd" opacity="0.7"/>
+              <line x1="122" y1="27" x2="144" y2="46" stroke="#665efd" stroke-width="1" opacity="0.22"/>
+              <text x="133" y="70" text-anchor="middle" font-size="7" fill="#64748d" font-family="Inter,sans-serif">Cluster B</text>
+              <!-- Cluster C: 1 node (subdued) -->
+              <circle cx="195" cy="32" r="5" fill="#b9b9f9" opacity="0.95"/>
+              <text x="195" y="54" text-anchor="middle" font-size="7" fill="#64748d" font-family="Inter,sans-serif">Cluster C</text>
+              <!-- Inter-cluster connectors (dashed hairline) -->
+              <line x1="54" y1="42" x2="122" y2="27" stroke="#e3e8ee" stroke-width="1" stroke-dasharray="3 3"/>
+              <line x1="144" y1="46" x2="195" y2="32" stroke="#e3e8ee" stroke-width="1" stroke-dasharray="3 3"/>
+            </svg>
+          </div>
         </div>
 
         <div class="bg-white border border-hairline rounded-xl p-8">
@@ -237,6 +353,26 @@
           <p class="text-ink-mute font-light text-[15px] leading-[1.6]">
             Get ahead of the shifts, prove the work that's working.
           </p>
+
+          <!-- Step 3 mock: mini sparkline with positive delta badge -->
+          <div class="mt-5 rounded-lg border border-hairline bg-canvas-soft p-3">
+            <div class="flex items-end justify-between gap-3">
+              <svg viewBox="0 0 160 52" class="flex-1" style="height:44px" preserveAspectRatio="none" aria-hidden="true">
+                <defs>
+                  <linearGradient id="sparkGrad" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#533afd" stop-opacity="0.14"/>
+                    <stop offset="100%" stop-color="#533afd" stop-opacity="0"/>
+                  </linearGradient>
+                </defs>
+                <path d="M0,48 L22,44 L45,40 L68,34 L90,27 L112,21 L135,14 L160,8 L160,52 L0,52 Z"
+                      fill="url(#sparkGrad)"/>
+                <polyline points="0,48 22,44 45,40 68,34 90,27 112,21 135,14 160,8"
+                          fill="none" stroke="#533afd" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <span class="text-[11px] font-normal px-2 py-1 rounded-md shrink-0 leading-none" style="background:#dcfce7;color:#16a34a">+12% ↑</span>
+            </div>
+            <div class="text-ink-mute text-[11px] font-light mt-1.5">Avg. position (30d)</div>
+          </div>
         </div>
 
       </div>
